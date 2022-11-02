@@ -28,4 +28,9 @@ public class Book {
     public double getRating(){
         return this.rating;
     }
+
+    public String toString(){
+        return this.isbn + "," + this.author + "," 
+            + this.title + "," + this.rating;
+    }
 }

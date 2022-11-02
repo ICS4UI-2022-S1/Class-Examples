@@ -1,6 +1,7 @@
 package BookSystem;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -43,7 +44,61 @@ public class Collection {
         }
         // close off the scanner
         input.close();
-    }   
+    }
+    
+
+    public Book findBookByISBN(long isbn){
+        // for each book in books list
+        // b is the current book you are looking at
+        for(Book b : this.books){
+            if(b.getISBN() == isbn){
+                return b;
+            }
+        }
+        // didn't find a book
+        return null;
+    }
+
+    public void removeBook(Book b){
+        // -1 is not valid therefore haven't found it
+        int removeIndex = -1;
+        // creating a counter so we know where we are
+        int i = 0;
+        for(Book book : this.books){
+            // do these match?
+            if(book == b){
+                // mark the index and stop looking
+                removeIndex = i;
+                break;
+            }
+            i++;
+        }
+        // did I find it?
+        if(removeIndex > -1){
+            this.books.remove(removeIndex);
+            this.writeFile(this.filename);
+        }
+    }
+
+    private void writeFile(String filename){
+        // creating a print writer
+        PrintWriter output = null;
+        try{
+            output = new PrintWriter(new File(filename));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        // print the header
+        output.println("isbn13,authors,title,average_rating");
+        for(Book b: this.books){
+            // print each book using Book's toString
+            output.println(b);
+        }
+        // close the file to complete writing
+        output.close();
+    }
+    
 
     
 }
