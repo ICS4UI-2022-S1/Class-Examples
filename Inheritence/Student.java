@@ -50,4 +50,10 @@ public class Student extends Person {
         String output = super.getName() + "\n" + super.getAddress() + "\n" + this.studentNumber + "\n" + Arrays.toString(this.classes);
         return output;
     }
+
+    @Override
+    public void save(String filename){
+
+    }
+
 }
