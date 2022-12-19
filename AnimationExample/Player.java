@@ -25,7 +25,6 @@ public class Player {
     }
 
     public void draw(Graphics g){
-        g.setColor(Color.BLACK);
         if(idle.isPlaying()){
             g.drawImage(idle.getFrame(), this.x, this.y, 32, 32, null);
         }else{
