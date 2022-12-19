@@ -42,8 +42,8 @@ public class AnimationTest extends JComponent implements ActionListener {
     boolean left = false;
     
     Player player = new Player(200, 400, 32, 32);
-
-
+    Player player2 = new Player(600, 400, 32, 32);
+    Animation anim = new Animation("AnimationExample/images/spritestrip.png", 6, 138, 139, 3);
     // GAME VARIABLES END HERE    
 
     
@@ -94,6 +94,8 @@ public class AnimationTest extends JComponent implements ActionListener {
 
         // GAME DRAWING GOES HERE
         player.draw(g);
+        player2.draw(g);
+        g.drawImage(anim.getFrame(), 300, 200, null);
         
         // GAME DRAWING ENDS HERE
     }
@@ -102,7 +104,8 @@ public class AnimationTest extends JComponent implements ActionListener {
     // This is run before the game loop begins!
     public void setup() {
         // Any of your pre setup before the loop starts should go here
-
+        player2.stop();
+        anim.start();
     }
 
     // The main game loop
@@ -118,6 +121,9 @@ public class AnimationTest extends JComponent implements ActionListener {
         }
 
         player.update();
+        player2.update();
+        
+        anim.update();
         
     }
 
